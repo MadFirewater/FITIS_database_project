@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">
+            jdbc:firebirdsql://localhost/C:\DEKANAT.fdb?characterEncoding=windows-1251
+        </property>
+        <property name="connection.driver_class">
+        org.firebirdsql.jdbc.FBDriver
+        </property>
+        <property name="connection.username">
+            sysdba
+        </property>
+        <property name="connection.password">
+            masterkey
+        </property>
+        <property name="hibernate.connection.CharSet">windows-1251</property>
+        <property name="hibernate.connection.characterEncoding">windows-1251</property>
+
+
+        <mapping class="com.chdtu.fitis.dipsupl.entity.Student"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.Cathedra"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.Department"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.Grade"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.Group"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.GroupSubject"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.Speciality"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.Subject"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.KnowledgeControl"/>
+        <mapping class="com.chdtu.fitis.dipsupl.entity.CurrentYear"/>
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>
