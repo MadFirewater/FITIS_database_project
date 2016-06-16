@@ -230,6 +230,7 @@ public class TableBuilder {
 
     public static ArrayList<Tr> generatePointRows(GroupSummary groupSummary) {
         ArrayList<Tr> tableRows = new ArrayList();
+        addSummationForGroup(tableRows);
         int rowNumber = 1;
         for (GradeSummary gradeSummary : groupSummary.getStudentGradesSummaries().get(0).getGradeSummaries()) {
             if (!gradeSummary.getTitle().equals("")) {
@@ -245,25 +246,11 @@ public class TableBuilder {
                 rowNumber++;
             }
         }
-        tableRows.add(factory.createTr());
-        addTableCell(tableRows.get(tableRows.size() - 1), "");
-        addTableCell(tableRows.get(tableRows.size() - 1), "Підсумкова оцінка");
-        tableRows.add(factory.createTr());
-        addTableCell(tableRows.get(tableRows.size() - 1), "");
-        addTableCell(tableRows.get(tableRows.size() - 1), "Середній бал");
-        tableRows.add(factory.createTr());
-        addTableCell(tableRows.get(tableRows.size() - 1), "");
-        addTableCell(tableRows.get(tableRows.size() - 1), "Середня оцінка");
-        tableRows.add(factory.createTr());
-        addTableCell(tableRows.get(tableRows.size() - 1), "");
-        addTableCell(tableRows.get(tableRows.size() - 1), "Кількість годин");
-        tableRows.add(factory.createTr());
-        addTableCell(tableRows.get(tableRows.size() - 1), "");
-        addTableCell(tableRows.get(tableRows.size() - 1), "Кількість кредитів");
+
         int k = 0;
         for (StudentSummary studentSummary : groupSummary.getStudentGradesSummaries()) {
             k = 0;
-            System.out.println(groupSummary.getGroupName() + " " + studentSummary.getStudentName() + tableRows.size());
+            System.out.println(groupSummary.getGroupName() + " " + studentSummary.getStudentName());
             for (GradeSummary gradeSummary : studentSummary.getGradeSummaries()) {
                 for (CourseGrade courseGrade : gradeSummary.getCourseGrades()) {
                     if (courseGrade.getGradeScale() != null)
@@ -304,6 +291,24 @@ public class TableBuilder {
             addTableCell(tableRow, "");
         }
         table.getContent().add(tableRow);
+    }
+
+    public static void addSummationForGroup(ArrayList<Tr> tableRows){
+        tableRows.add(factory.createTr());
+        addTableCell(tableRows.get(tableRows.size() - 1), "");
+        addTableCell(tableRows.get(tableRows.size() - 1), "Підсумкова оцінка");
+        tableRows.add(factory.createTr());
+        addTableCell(tableRows.get(tableRows.size() - 1), "");
+        addTableCell(tableRows.get(tableRows.size() - 1), "Середній бал");
+        tableRows.add(factory.createTr());
+        addTableCell(tableRows.get(tableRows.size() - 1), "");
+        addTableCell(tableRows.get(tableRows.size() - 1), "Середня оцінка");
+        tableRows.add(factory.createTr());
+        addTableCell(tableRows.get(tableRows.size() - 1), "");
+        addTableCell(tableRows.get(tableRows.size() - 1), "Кількість годин");
+        tableRows.add(factory.createTr());
+        addTableCell(tableRows.get(tableRows.size() - 1), "");
+        addTableCell(tableRows.get(tableRows.size() - 1), "Кількість кредитів");
     }
 
     private static void setCellWeight(Tc tableCell, int weight) {
