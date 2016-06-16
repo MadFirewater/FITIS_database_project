@@ -117,16 +117,18 @@ public class GradeSummary {
             averagePoints = sumPoints / (double) numberOfExams;
             averageGradeScale = sumGradeScale / (double) numberOfExams;
             resultGrade.setMarkType(true);
+            double rightPoints[] = calculateRightScaleAndPoints(averageGradeScale, averagePoints);
+            resultGrade.setGradeScale((int) rightPoints[0]);
+            resultGrade.setPoints(rightPoints[1]);
         } else {
             averagePoints = sumCountedPoints / (double) numberOfCounted;
             averageGradeScale = sumCountedGradeScale / (double) numberOfCounted;
+            resultGrade.setGradeScale((int)Math.round(averageGradeScale));
+            resultGrade.setPoints((int)Math.round(averagePoints));
             resultGrade.setMarkType(false);
         }
         resultGrade.setHours(hours);
         resultGrade.setCreditsECTS(resultGrade.getCreditsFromHours(hours));
-        double rightPoints[] = calculateRightScaleAndPoints(averageGradeScale, averagePoints);
-        resultGrade.setGradeScale((int) rightPoints[0]);
-        resultGrade.setPoints(rightPoints[1]);
         resultGrade.setGradeECTS(resultGrade.getGradeECTSFromPoints());
         resultGrade.setGradeNationalScale(resultGrade.getNationalGradeScale());
         resultGrade.setStudyingPeriod(period);

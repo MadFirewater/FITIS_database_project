@@ -14,10 +14,10 @@ public class ConsoleDebug {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
 //        createDocumentForStudentById(4117);
-//        createDocumentForGroupById(368);
-        List<Group> groups = getSelectedGroups(Department.DEPARTMENT_ID_FITIS);
-        for (Group group : groups)
-            createDocumentForGroupById(group.getId());
+          createDocumentForGroupById(368,"");//Overloaded! THe second parameter is a path.
+//        List<Group> groups = getSelectedGroups(Department.DEPARTMENT_ID_FITIS);
+//        for (Group group : groups)
+//            createDocumentForGroupById(group.getId(),"");
         System.out.println("Execution time:" + (System.currentTimeMillis() - startTime) / 1000. + " seconds");
         System.exit(0);
     }

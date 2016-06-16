@@ -34,6 +34,17 @@ public class DocumentBuilder {
         TableBuilder.buildDocument(groupSummary, generateGroupPathById(groupId));
     }
 
+    public static void createDocumentForGroupById(int groupId,String path) {
+        ArrayList<ArrayList<ArrayList<Grade>>> gradeLists = new ArrayList();
+        ArrayList<Student> students = (ArrayList) getSelectedStudents(groupId);
+        for (Student student : students) {
+            ArrayList<ArrayList<Grade>> grades = getGrades(student.getId());
+            gradeLists.add(grades);
+        }
+        GroupSummary groupSummary = new GroupSummary(students, gradeLists);
+        TableBuilder.buildDocument(groupSummary, generateGroupPathById(groupId,path));
+    }
+
 
     public static String generateStudentPathById(int studentId) {
         Student student = getStudent(studentId);
@@ -49,9 +60,17 @@ public class DocumentBuilder {
         return result;
     }
 
+
     public static String generateGroupPathById(int groupId) {
         Group group = getGroup(groupId);
         String result = SelectedItems.getFilePathPrefix() + "Група "
+                + group.getName()
+                + ".docx";
+        return result;
+    }
+    public static String generateGroupPathById(int groupId,String path) {
+        Group group = getGroup(groupId);
+        String result = path + "Група "
                 + group.getName()
                 + ".docx";
         return result;
