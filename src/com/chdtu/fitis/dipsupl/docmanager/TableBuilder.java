@@ -249,7 +249,11 @@ public class TableBuilder {
 
         int k = 0;
         for (StudentSummary studentSummary : groupSummary.getStudentGradesSummaries()) {
-            k = 0;
+            addTableCell(tableRows.get(1), Math.round(studentSummary.getAveragePoint()) + "");
+            addTableCell(tableRows.get(2), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
+            addTableCell(tableRows.get(3), studentSummary.getTotalHours() + "");
+            addTableCell(tableRows.get(4), studentSummary.getTotalCreditsECTS() + "");
+            k = 5;
             System.out.println(groupSummary.getGroupName() + " " + studentSummary.getStudentName());
             for (GradeSummary gradeSummary : studentSummary.getGradeSummaries()) {
                 for (CourseGrade courseGrade : gradeSummary.getCourseGrades()) {
@@ -261,10 +265,6 @@ public class TableBuilder {
                 }
                 k++;
             }
-            addTableCell(tableRows.get(tableRows.size() - 4), Math.round(studentSummary.getAveragePoint()) + "");
-            addTableCell(tableRows.get(tableRows.size() - 3), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
-            addTableCell(tableRows.get(tableRows.size() - 2), studentSummary.getTotalHours() + "");
-            addTableCell(tableRows.get(tableRows.size() - 1), studentSummary.getTotalCreditsECTS() + "");
         }
 
         return tableRows;
