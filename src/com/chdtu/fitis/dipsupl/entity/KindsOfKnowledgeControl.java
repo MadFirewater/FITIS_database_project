@@ -12,5 +12,5 @@ public class KindsOfKnowledgeControl {
     public static final int STATE_EXAM = 6;
     public static final int DIPLOMA_PROJECT = 7;
     public static final int PRACTICE = 8;
-    public static final int FINAL_EXAMINATION = 9;
+    public static final int FINAL_EXAMINATION = 7;
 }
