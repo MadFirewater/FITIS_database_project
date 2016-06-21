@@ -249,11 +249,11 @@ public class TableBuilder {
 
         int k = 0;
         for (StudentSummary studentSummary : groupSummary.getStudentGradesSummaries()) {
-            addTableCell(tableRows.get(1), Math.round(studentSummary.getAveragePoint()) + "");
-            addTableCell(tableRows.get(2), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
-            addTableCell(tableRows.get(3), studentSummary.getTotalHours() + "");
-            addTableCell(tableRows.get(4), studentSummary.getTotalCreditsECTS() + "");
-            k = 5;
+            addTableCell(tableRows.get(0), Math.round(studentSummary.getAveragePoint()) + "");
+            addTableCell(tableRows.get(1), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
+            addTableCell(tableRows.get(2), studentSummary.getTotalHours() + "");
+            addTableCell(tableRows.get(3), studentSummary.getTotalCreditsECTS() + "");
+            k = 4;
             System.out.println(groupSummary.getGroupName() + " " + studentSummary.getStudentName());
             for (GradeSummary gradeSummary : studentSummary.getGradeSummaries()) {
                 for (CourseGrade courseGrade : gradeSummary.getCourseGrades()) {
@@ -294,15 +294,15 @@ public class TableBuilder {
     }
 
     public static void addSummationForGroup(ArrayList<Tr> tableRows){
+//        tableRows.add(factory.createTr());
+//        addTableCell(tableRows.get(tableRows.size() - 1), "");
+//        addTableCell(tableRows.get(tableRows.size() - 1), "Підсумкова оцінка");
         tableRows.add(factory.createTr());
         addTableCell(tableRows.get(tableRows.size() - 1), "");
         addTableCell(tableRows.get(tableRows.size() - 1), "Підсумкова оцінка");
         tableRows.add(factory.createTr());
         addTableCell(tableRows.get(tableRows.size() - 1), "");
         addTableCell(tableRows.get(tableRows.size() - 1), "Середній бал");
-        tableRows.add(factory.createTr());
-        addTableCell(tableRows.get(tableRows.size() - 1), "");
-        addTableCell(tableRows.get(tableRows.size() - 1), "Середня оцінка");
         tableRows.add(factory.createTr());
         addTableCell(tableRows.get(tableRows.size() - 1), "");
         addTableCell(tableRows.get(tableRows.size() - 1), "Кількість годин");
