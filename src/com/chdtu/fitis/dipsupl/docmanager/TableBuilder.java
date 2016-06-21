@@ -20,6 +20,10 @@ import java.util.Properties;
 
 
 public class TableBuilder {
+    public static final int NUMBER_OF_AVERAGE_POINT_ROW = 0;
+    public static final int NUMBER_OF_AVERAGE_SCALE_ROW = 1;
+    public static final int NUMBER_OF_TOTAL_HOURS_ROW = 2;
+    public static final int NUMBER_OF_TOTAL_CREDITS_ROW = 3;
     private static WordprocessingMLPackage wordMLPackage;
     private static ObjectFactory factory;
     private static org.docx4j.wml.P prop;
@@ -249,10 +253,10 @@ public class TableBuilder {
 
         int k = 0;
         for (StudentSummary studentSummary : groupSummary.getStudentGradesSummaries()) {
-            addTableCell(tableRows.get(0), Math.round(studentSummary.getAveragePoint()) + "");
-            addTableCell(tableRows.get(1), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
-            addTableCell(tableRows.get(2), studentSummary.getTotalHours() + "");
-            addTableCell(tableRows.get(3), studentSummary.getTotalCreditsECTS() + "");
+            addTableCell(tableRows.get(NUMBER_OF_AVERAGE_POINT_ROW), Math.round(studentSummary.getAveragePoint()) + "");
+            addTableCell(tableRows.get(NUMBER_OF_AVERAGE_SCALE_ROW), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
+            addTableCell(tableRows.get(NUMBER_OF_TOTAL_HOURS_ROW), studentSummary.getTotalHours() + "");
+            addTableCell(tableRows.get(NUMBER_OF_TOTAL_CREDITS_ROW), studentSummary.getTotalCreditsECTS() + "");
             k = 4;
             System.out.println(groupSummary.getGroupName() + " " + studentSummary.getStudentName());
             for (GradeSummary gradeSummary : studentSummary.getGradeSummaries()) {
