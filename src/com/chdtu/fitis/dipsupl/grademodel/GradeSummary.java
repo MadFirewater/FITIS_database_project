@@ -133,6 +133,7 @@ public class GradeSummary {
         resultGrade.setGradeNationalScale(resultGrade.getNationalGradeScale());
         resultGrade.setStudyingPeriod(period);
         if (numberOfExams > 1) resultGrade.setMultipleSemester(true);
+        if (numberOfExams==0&&numberOfCounted>1)resultGrade.setMultipleSemester(true);
         return resultGrade;
     }
 
