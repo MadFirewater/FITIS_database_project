@@ -20,10 +20,6 @@ import java.util.Properties;
 
 
 public class TableBuilder {
-    public static final int NUMBER_OF_AVERAGE_POINT_ROW = 0;
-    public static final int NUMBER_OF_AVERAGE_SCALE_ROW = 1;
-    public static final int NUMBER_OF_TOTAL_HOURS_ROW = 2;
-    public static final int NUMBER_OF_TOTAL_CREDITS_ROW = 3;
     private static WordprocessingMLPackage wordMLPackage;
     private static ObjectFactory factory;
     private static org.docx4j.wml.P prop;
@@ -237,7 +233,7 @@ public class TableBuilder {
         addSummationForGroup(tableRows);
         int rowNumber = 1;
         for (GradeSummary gradeSummary : groupSummary.getStudentGradesSummaries().get(0).getGradeSummaries()) {
-            if (!gradeSummary.getTitle().equals("")) {
+            {
                 tableRows.add(factory.createTr());
                 addTableCell(tableRows.get(tableRows.size() - 1), "");
                 addTableCell(tableRows.get(tableRows.size() - 1), gradeSummary.getTitle());
@@ -253,13 +249,14 @@ public class TableBuilder {
 
         int k = 0;
         for (StudentSummary studentSummary : groupSummary.getStudentGradesSummaries()) {
-            addTableCell(tableRows.get(NUMBER_OF_AVERAGE_POINT_ROW), Math.round(studentSummary.getAveragePoint()) + "");
-            addTableCell(tableRows.get(NUMBER_OF_AVERAGE_SCALE_ROW), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
-            addTableCell(tableRows.get(NUMBER_OF_TOTAL_HOURS_ROW), studentSummary.getTotalHours() + "");
-            addTableCell(tableRows.get(NUMBER_OF_TOTAL_CREDITS_ROW), studentSummary.getTotalCreditsECTS() + "");
-            k = 4;
+            k = 0;
+            addTableCell(tableRows.get(k++), Math.round(studentSummary.getAveragePoint()) + "");
+            addTableCell(tableRows.get(k++), Math.round(studentSummary.getAverageScale() * 100) / (double) 100 + "");
+            addTableCell(tableRows.get(k++), studentSummary.getTotalHours() + "");
+            addTableCell(tableRows.get(k++), studentSummary.getTotalCreditsECTS() + "");
             System.out.println(groupSummary.getGroupName() + " " + studentSummary.getStudentName());
             for (GradeSummary gradeSummary : studentSummary.getGradeSummaries()) {
+                k++;
                 for (CourseGrade courseGrade : gradeSummary.getCourseGrades()) {
                     if (courseGrade.getGradeScale() != null)
                         addTableCell(tableRows.get(k),
@@ -267,7 +264,6 @@ public class TableBuilder {
                     else addTableCell(tableRows.get(k), "");
                     k++;
                 }
-                k++;
             }
         }
 
@@ -297,7 +293,7 @@ public class TableBuilder {
         table.getContent().add(tableRow);
     }
 
-    public static void addSummationForGroup(ArrayList<Tr> tableRows){
+    public static void addSummationForGroup(ArrayList<Tr> tableRows) {
 //        tableRows.add(factory.createTr());
 //        addTableCell(tableRows.get(tableRows.size() - 1), "");
 //        addTableCell(tableRows.get(tableRows.size() - 1), "Підсумкова оцінка");
